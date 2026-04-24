@@ -5,8 +5,8 @@ const months = [
 ];
 
 const people = [
-  "شخص 1", "شخص 2", "شخص 3", "شخص 4",
-  "شخص 5", "شخص 6", "شخص 7", "شخص 8"
+  "منصور", "يزيد", "خالد", "عمر",
+  "عبود", "محمد", "خالد", "عبدالعزيز"
 ];
 
 const monthsRow = document.getElementById("monthsRow");
