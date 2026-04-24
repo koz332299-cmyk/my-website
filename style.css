@@ -1,75 +1,97 @@
-body {
+html, body {
   margin: 0;
+  padding: 0;
   font-family: Tahoma;
-  background: #0b0f1a;
-  color: white;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  min-height: 100vh;
+  background: #000000;
+  color: #8a8f98;
+  overflow: hidden;
 }
 
-/* شكل التطبيق */
+/* الحاوية */
 .app {
-  width: 100%;
-  max-width: 420px;
-  padding: 15px;
+  min-height: 100vh;
+  padding: 12px;
+  box-sizing: border-box;
+  position: relative;
+  z-index: 2;
+}
+
+/* ⭐ طبقة النجوم */
+body::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 200%;
+  height: 200%;
+  background-image:
+    radial-gradient(1px 1px at 10px 20px, rgba(255,255,255,0.8), transparent),
+    radial-gradient(1px 1px at 60px 90px, rgba(255,255,255,0.6), transparent),
+    radial-gradient(1px 1px at 120px 50px, rgba(255,255,255,0.5), transparent),
+    radial-gradient(1px 1px at 200px 150px, rgba(255,255,255,0.7), transparent),
+    radial-gradient(1px 1px at 300px 220px, rgba(255,255,255,0.4), transparent),
+    radial-gradient(1px 1px at 400px 300px, rgba(255,255,255,0.6), transparent);
+  
+  background-size: 500px 500px;
+  animation: moveStars 120s linear infinite;
+  opacity: 0.7;
+  z-index: 0;
+}
+
+/* حركة النجوم */
+@keyframes moveStars {
+  0% { transform: translateY(0); }
+  100% { transform: translateY(-300px); }
 }
 
 /* العنوان */
 h1 {
   text-align: center;
-  margin-bottom: 15px;
-  font-size: 26px;
-  background: linear-gradient(90deg, #00c6ff, #007bff);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+  font-size: 22px;
+  margin: 15px 0;
+  color: #9aa0a6;
+  letter-spacing: 1px;
 }
 
 /* الجدول */
+.table-container {
+  overflow-x: auto;
+}
+
 table {
+  min-width: 750px;
   width: 100%;
   border-collapse: collapse;
-  font-size: 12px;
-  background: rgba(255,255,255,0.05);
-  backdrop-filter: blur(10px);
-  border-radius: 15px;
+  font-size: 13px;
+  background: rgba(255,255,255,0.03);
+  border-radius: 12px;
   overflow: hidden;
-  box-shadow: 0 0 20px rgba(0,123,255,0.2);
+  border: 1px solid rgba(255,255,255,0.05);
 }
 
 th, td {
-  border: 1px solid rgba(255,255,255,0.1);
-  padding: 6px;
+  padding: 10px;
   text-align: center;
+  border: 1px solid rgba(255,255,255,0.05);
+  color: #7f858e;
 }
 
 th {
-  background: rgba(0,123,255,0.25);
-}
-
-tr:hover td {
-  background: rgba(0,123,255,0.08);
+  background: rgba(255,255,255,0.04);
+  color: #9aa0a6;
 }
 
 /* checkbox */
 input[type="checkbox"] {
-  appearance: none;
-  width: 16px;
-  height: 16px;
-  border: 2px solid #007bff;
-  border-radius: 4px;
-  cursor: pointer;
+  width: 18px;
+  height: 18px;
+  accent-color: #6b7280;
 }
 
-input[type="checkbox"]:checked {
-  background: #007bff;
-  box-shadow: 0 0 6px #007bff;
-}
-
+/* الفوتر */
 .footer {
   text-align: center;
   font-size: 10px;
   margin-top: 10px;
-  color: #aaa;
+  color: #555b63;
 }

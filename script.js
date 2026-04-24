@@ -4,9 +4,9 @@ const months = [
 ];
 
 const people = [
-  "منصور","يزيد","محمد","خالد",
-  "عمر","عبود","عبدالعزيز","خالد ع",
-  "عبدالعزيز ش"
+  "شخص 1","شخص 2","شخص 3","شخص 4",
+  "شخص 5","شخص 6","شخص 7","شخص 8",
+  "شخص 9"
 ];
 
 const monthsRow = document.getElementById("monthsRow");
@@ -23,23 +23,23 @@ months.forEach(month => {
 people.forEach((person, i) => {
   const tr = document.createElement("tr");
 
-  const tdName = document.createElement("td");
-  tdName.textContent = person;
-  tr.appendChild(tdName);
+  const nameTd = document.createElement("td");
+  nameTd.textContent = person;
+  tr.appendChild(nameTd);
 
   months.forEach((m, j) => {
     const td = document.createElement("td");
-    const checkbox = document.createElement("input");
-    checkbox.type = "checkbox";
+    const cb = document.createElement("input");
+    cb.type = "checkbox";
 
     const key = `qata_${i}_${j}`;
-    checkbox.checked = localStorage.getItem(key) === "true";
+    cb.checked = localStorage.getItem(key) === "true";
 
-    checkbox.addEventListener("change", () => {
-      localStorage.setItem(key, checkbox.checked);
+    cb.addEventListener("change", () => {
+      localStorage.setItem(key, cb.checked);
     });
 
-    td.appendChild(checkbox);
+    td.appendChild(cb);
     tr.appendChild(td);
   });
 
