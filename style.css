@@ -575,3 +575,18 @@ input[type="checkbox"] {
   height: 100%;
   z-index: -1;
 }
+
+.auth-buttons {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+}
+
+.btn {
+  background: rgba(255, 248, 248, 0.95);
+  color: #353030;
+  padding: 10px 18px;
+  margin-left: 10px;
+  text-decoration: none;
+  border-radius: 8px;
+}

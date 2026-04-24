@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+<meta charset="UTF-8">
+<title>تسجيل دخول</title>
+
+<style>
+body {
+  margin: 0;
+  font-family: sans-serif;
+}
+
+#bg {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+}
+
+.form-container {
+  position: relative;
+  z-index: 10;
+  width: 300px;
+  margin: auto;
+  margin-top: 150px;
+  background: rgba(40, 40, 40, 0.95); /* رصاصي غامق */
+  padding: 25px;
+  border-radius: 12px;
+  text-align: center;
+  backdrop-filter: blur(10px);
+  color: white;
+}
+</style>
+
+</head>
+<body>
+
+<div id="bg"></div>
+
+<div class="form-container">
+  <h2>تسجيل دخول</h2>
+  <input type="text" placeholder="اسم المستخدم"><br>
+  <input type="password" placeholder="كلمة المرور"><br>
+  <button>دخول</button>
+</div>
+
+<!-- الخلفية -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.fog.min.js"></script>
+
+<script>
+VANTA.FOG({
+  el: "#bg",
+  highlightColor: 0xffffff,
+  midtoneColor: 0xaaaaaa,
+  lowlightColor: 0x000000,
+  baseColor: 0x000000
+});
+</script>
+
+</body>
+</html>
