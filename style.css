@@ -6,76 +6,69 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh;
+  min-height: 100vh;
 }
 
 /* شكل التطبيق */
 .app {
   width: 100%;
   max-width: 420px;
+  padding: 15px;
 }
 
-/* كارد */
-.card {
-  background: rgba(255,255,255,0.05);
-  padding: 20px;
-  border-radius: 20px;
-  backdrop-filter: blur(12px);
-  box-shadow: 0 0 20px rgba(0,123,255,0.2);
+/* العنوان */
+h1 {
   text-align: center;
+  margin-bottom: 15px;
+  font-size: 26px;
+  background: linear-gradient(90deg, #00c6ff, #007bff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
-input {
-  width: 100%;
-  padding: 12px;
-  margin: 8px 0;
-  border-radius: 10px;
-  border: none;
-  outline: none;
-}
-
-button {
-  width: 100%;
-  padding: 12px;
-  margin-top: 10px;
-  border: none;
-  border-radius: 10px;
-  background: #007bff;
-  color: white;
-  cursor: pointer;
-}
-
-button:hover {
-  background: #0056b3;
-}
-
-.hidden {
-  display: none;
-}
-
-/* التطبيق */
-#mainApp {
-  text-align: center;
-}
-
+/* الجدول */
 table {
   width: 100%;
-  margin-top: 15px;
   border-collapse: collapse;
   font-size: 12px;
+  background: rgba(255,255,255,0.05);
+  backdrop-filter: blur(10px);
+  border-radius: 15px;
+  overflow: hidden;
+  box-shadow: 0 0 20px rgba(0,123,255,0.2);
 }
 
 th, td {
   border: 1px solid rgba(255,255,255,0.1);
   padding: 6px;
+  text-align: center;
 }
 
-.logout {
-  background: red;
-  margin-bottom: 10px;
+th {
+  background: rgba(0,123,255,0.25);
+}
+
+tr:hover td {
+  background: rgba(0,123,255,0.08);
+}
+
+/* checkbox */
+input[type="checkbox"] {
+  appearance: none;
+  width: 16px;
+  height: 16px;
+  border: 2px solid #007bff;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+input[type="checkbox"]:checked {
+  background: #007bff;
+  box-shadow: 0 0 6px #007bff;
 }
 
 .footer {
+  text-align: center;
   font-size: 10px;
   margin-top: 10px;
   color: #aaa;
