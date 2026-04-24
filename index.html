@@ -34,6 +34,7 @@
       </div>
     </div>
     </table>
+    <div id="bg"></div>
   </div>
 
   <p class="footer">المصمم ابو ماضي</p>
@@ -41,5 +42,29 @@
 </div>
 
 <script src="script.js"></script>
+
+<!-- three.js (مهم) -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
+
+<!-- Fog -->
+<script src="https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.fog.min.js"></script>
+
+<script>
+  VANTA.FOG({
+    el: "#bg",
+
+    mouseControls: true,
+    touchControls: true,
+
+    highlightColor: 0xffffff,  // أبيض
+    midtoneColor: 0xaaaaaa,    // رمادي
+    lowlightColor: 0x000000,
+    baseColor: 0x000000,
+
+    blurFactor: 0.8,
+    speed: 0.8,
+    zoom: 1.0
+  });
+</script>
 </body>
 </html>

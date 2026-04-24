@@ -47,9 +47,9 @@ body::before {
 /* العنوان */
 h1 {
   text-align: center;
-  font-size: 22px;
+  font-size: 27px;
   margin: 15px 0;
-  color: #9aa0a6;
+  color: #e0e9f1;
   letter-spacing: 1px;
 }
 
@@ -78,7 +78,7 @@ th, td {
 
 th {
   background: rgba(255,255,255,0.04);
-  color: #9aa0a6;
+  color: #e5edf5;
 }
 
 /* checkbox */
@@ -566,4 +566,12 @@ input[type="checkbox"] {
     width: 10px;
     left: 20px;
   }
+}
+#bg {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
 }
