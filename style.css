@@ -710,10 +710,12 @@ body {
 }
 
 /* ===== الجوال ===== */
-@media (max-width: 768px) {
+  @media (max-width: 768px) {
   .card {
-    width: 90%;
-    margin-left: 10px;
+    width: 160px;
+    margin-left: 12px;
+    margin-right: auto;
   }
+}
 
 /* ===== الزر ===== */
