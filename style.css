@@ -4,7 +4,6 @@ html, body {
   font-family: Tahoma;
   background: #000000;
   color: #8a8f98;
-  overflow: hidden;
 }
 
 /* الحاوية */
@@ -45,13 +44,64 @@ body::before {
 }
 
 /* العنوان */
-h1 {
-  text-align: center;
-  font-size: 27px;
-  margin: 15px 0;
-  color: #e0e9f1;
-  letter-spacing: 1px;
+
+/* ===== الهيدر ===== */
+.top-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px 0;
+  z-index: 1000;
+  background: transparent; /* تقدر تغيّره لو تبي خلفية */
 }
+
+/* ===== النص المتحرك ===== */
+.btn-shine {
+  font-family: "Poppins", sans-serif;
+  font-size: 42px;
+  font-weight: 700;
+  text-decoration: none;
+  white-space: nowrap;
+
+  background: linear-gradient(
+    to right,
+    #9f9f9f 0%,
+    #ffffff 10%,
+    #868686 20%
+  );
+  background-size: 200% auto;
+
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+
+  animation: shine 3s linear infinite;
+}
+
+/* ===== تأثير اللمعان ===== */
+@keyframes shine {
+  0% {
+    background-position: 0%;
+  }
+  100% {
+    background-position: 200%;
+  }
+}
+
+/* ===== للجوال ===== */
+@media (max-width: 768px) {
+  .btn-shine {
+    font-size: 26px;
+  }
+
+  .top-header {
+    padding: 15px 0;
+  }
+}
+
 
 /* الجدول */
 .table-container {
@@ -98,7 +148,7 @@ input[type="checkbox"] {
 /* From Uiverse.io by SouravBandyopadhyay */ 
 .hourglassBackground {
   position: relative;
-  background-color: rgb(71, 60, 60);
+  background-color: rgb(61, 63, 63);
   height: 130px;
   width: 130px;
   border-radius: 50%;
@@ -594,3 +644,76 @@ input[type="checkbox"] {
   border-radius: 8px;
   text-align: center;
 }
+
+/* ===== تنسيق الصفحة ===== */
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 20px;
+}
+
+/* ===== جدول ===== */
+.my-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 40px;
+}
+
+.my-table th,
+.my-table td {
+  border: 1px solid #ccc;
+  padding: 10px;
+  text-align: left;
+}
+
+/* ===== الكرت ===== */
+.card {
+  width: 220px;
+  margin: 80px 0 40px 20px; /* يخليه يسار */
+  margin-bottom: 40px; /* مسافة تحت */
+
+  background: #fdfdfd;
+  padding: 15px;
+  border-radius: 12px;
+  border: 2px solid #05060f;
+  box-shadow: 4px 4px #05060f;
+}
+
+/* ===== المحتوى ===== */
+.pricing-plan {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.price-value {
+  font-size: 22px;
+  font-weight: bold;
+  display: flex;
+  gap: 5px;
+}
+
+.pricing-note {
+  font-size: 12px;
+  opacity: 0.7;
+}
+
+/* ===== القائمة ===== */
+.check-list {
+  margin-top: 10px;
+  padding: 0;
+  list-style: none;
+}
+
+.check-list li {
+  font-size: 13px;
+  margin-bottom: 5px;
+}
+
+/* ===== الجوال ===== */
+@media (max-width: 768px) {
+  .card {
+    width: 90%;
+    margin-left: 10px;
+  }
+
+/* ===== الزر ===== */
