@@ -20,48 +20,61 @@ months.forEach(month => {
 });
 window.isAdmin = false;
 
+async function buildTable() {
 
+  for (let i = 0; i < people.length; i++) {
+    const tr = document.createElement("tr");
 
-/* إنشاء الجدول */
-people.forEach((person, i) => {
-  const tr = document.createElement("tr");
+    const nameTd = document.createElement("td");
+    nameTd.textContent = people[i];
+    tr.appendChild(nameTd);
 
-  const nameTd = document.createElement("td");
-  nameTd.textContent = person;
-  tr.appendChild(nameTd);
+    for (let j = 0; j < months.length; j++) {
+      const td = document.createElement("td");
+      const cb = document.createElement("input");
+      cb.type = "checkbox";
 
-  months.forEach((m, j) => {
-    const td = document.createElement("td");
-    const cb = document.createElement("input");
+      const key = `qata_${i}_${j}`;
 
-    cb.type = "checkbox";
+      try {
+        const docSnap = await getDoc(doc(db, "qata", key));
 
-    const key = `qata_${i}_${j}`;
-    cb.checked = localStorage.getItem(key) === "true";
-
-    // 🔥 منع التعديل لغير الأدمن قبل ما يصير التغيير
-    cb.addEventListener("click", (e) => {
-
-      if (!window.isAdmin) {
-        e.preventDefault();
-        alert("❌ فقط الأدمن يقدر يغير");
+        if (docSnap.exists()) {
+          cb.checked = docSnap.data().checked;
+        }
+      } catch (e) {
+        console.log("خطأ:", e);
       }
 
-    });
+      // منع التعديل لغير الأدمن
+      cb.addEventListener("click", (e) => {
+        if (!isAdmin) {
+          e.preventDefault();
+          alert("❌ فقط الأدمن");
+        }
+      });
 
-    // 🔥 حفظ التغيير فقط إذا صار فعلي
-    cb.addEventListener("change", () => {
-      if (window.isAdmin) {
-        localStorage.setItem(key, cb.checked);
-      }
-    });
+      // حفظ البيانات
+      cb.addEventListener("change", async () => {
+        if (isAdmin) {
+          await setDoc(doc(db, "qata", key), {
+            checked: cb.checked
+          });
+        }
+      });
 
-    td.appendChild(cb);
-    tr.appendChild(td);
-  });
+      td.appendChild(cb);
+      tr.appendChild(td);
+    }
 
-  tableBody.appendChild(tr);
-});
+    tableBody.appendChild(tr);
+  }
+}
+
+// تشغيل
+buildTable();
+
+
 /*الخلفيه*/
 const canvas = document.getElementById('shader-canvas');
 const gl = canvas.getContext('webgl');

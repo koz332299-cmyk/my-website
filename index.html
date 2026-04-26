@@ -21,14 +21,7 @@
   <a href="#" class="btn-shine">قطه الاستراحه</a>
 </header>
 
-
-  
-
- 
-
-
-
-  <div class="table-container">
+<div class="table-container">
     <table>
       <thead>
         <tr id="monthsRow">
@@ -49,8 +42,6 @@
       </div>
     </div>
     </table>
-
-
 
 
 
@@ -87,6 +78,7 @@
   <p class="footer">المصمم ابو ماضي</p>
 
 </div>
+<canvas id="shader-canvas"></canvas>
 
 <!--ربط jav-->
 <script src="script.js"></script>
@@ -139,25 +131,32 @@ void main() {
 
 <!--السيرفر-->
 <script type="module">
-import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
-import { getAuth } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
-import { getFirestore } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+import { getFirestore, doc, getDoc, setDoc } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+
+import { getAuth, onAuthStateChanged } 
+from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyBpLuD26_WiVwhLKztyHH_W3FcTeHckEHM",
-  authDomain: "web-koz.firebaseapp.com",
-  databaseURL: "https://web-koz-default-rtdb.firebaseio.com",
-  projectId: "web-koz",
-  storageBucket: "web-koz.firebasestorage.app",
-  messagingSenderId: "137112114880",
-  appId: "1:137112114880:web:5cc6cf1e021a0c193d3f25",
-  measurementId: "G-1TBHS0BS28"
+  apiKey: "YOUR_KEY",
+  authDomain: "YOUR_DOMAIN",
+  projectId: "YOUR_ID"
 };
 
 const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
+const auth = getAuth(app);
 
-window.auth = getAuth(app);
-window.db = getFirestore(app);
+let isAdmin = false;
+
+onAuthStateChanged(auth, (user) => {
+  if (user && user.email === "admin@gmail.com") {
+    isAdmin = true;
+    console.log("✅ أنت أدمن");
+  } else {
+    isAdmin = false;
+  }
+});
 </script>
 
 <script type="module">
@@ -168,12 +167,15 @@ window.addEventListener("DOMContentLoaded", () => {
 
   const checkBoxes = document.querySelectorAll(".checkBox");
 
+  // 🔥 نخزن صلاحية الأدمن بشكل عام
+  window.isAdmin = false;
+
   onAuthStateChanged(window.auth, (user) => {
 
-    const isAdmin = user && user.email === "koz332299@gmail.com";
+    window.isAdmin = user && user.email === "koz332299@gmail.com";
 
     checkBoxes.forEach(box => {
-      box.disabled = !isAdmin;
+      box.disabled = !window.isAdmin;
     });
 
   });
