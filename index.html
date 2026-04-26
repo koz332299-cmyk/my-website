@@ -145,24 +145,21 @@ from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
 
 window.addEventListener("DOMContentLoaded", () => {
 
-  const authButtons = document.querySelector(".auth-buttons");
-
-  // 🔥 أزرار الصح في الجدول (إذا موجودة)
   const checkButtons = document.querySelectorAll(".checkBtn");
+
+  let listenersAdded = false;
 
   onAuthStateChanged(window.auth, (user) => {
 
-    const isAdmin = user && user.email === "admin@gmail.com";
+    const isAdmin = user && user.email === "koz332299@gmail.com";
 
-    if (user) {
-      console.log("LOGGED IN:", user.email);
+    console.log("USER:", user ? user.email : "no user");
 
-      if (authButtons) {
-        authButtons.style.display = "none";
-      }
+    // 👑 صلاحية الأدمن فقط
+    if (!listenersAdded) {
 
-      // 👑 التحكم بالأزرار (فقط للأدمن)
       checkButtons.forEach(btn => {
+
         btn.addEventListener("click", () => {
 
           if (!isAdmin) {
@@ -174,14 +171,10 @@ window.addEventListener("DOMContentLoaded", () => {
           btn.disabled = true;
 
         });
+
       });
 
-    } else {
-
-      if (authButtons) {
-        authButtons.style.display = "block";
-      }
-
+      listenersAdded = true;
     }
 
   });
