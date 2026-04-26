@@ -138,6 +138,27 @@ void main() {
 
 
 <!--السيرفر-->
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
+import { getAuth } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
+import { getFirestore } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyBpLuD26_WiVwhLKztyHH_W3FcTeHckEHM",
+  authDomain: "web-koz.firebaseapp.com",
+  databaseURL: "https://web-koz-default-rtdb.firebaseio.com",
+  projectId: "web-koz",
+  storageBucket: "web-koz.firebasestorage.app",
+  messagingSenderId: "137112114880",
+  appId: "1:137112114880:web:5cc6cf1e021a0c193d3f25",
+  measurementId: "G-1TBHS0BS28"
+};
+
+const app = initializeApp(firebaseConfig);
+
+window.auth = getAuth(app);
+window.db = getFirestore(app);
+</script>
 
 <script type="module">
 import { onAuthStateChanged } 
@@ -145,66 +166,20 @@ from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
 
 window.addEventListener("DOMContentLoaded", () => {
 
-  const checkButtons = document.querySelectorAll(".checkBtn");
-
-  let listenersAdded = false;
+  const checkBoxes = document.querySelectorAll(".checkBox");
 
   onAuthStateChanged(window.auth, (user) => {
 
     const isAdmin = user && user.email === "koz332299@gmail.com";
 
-    console.log("USER:", user ? user.email : "no user");
-
-    // 👑 صلاحية الأدمن فقط
-    if (!listenersAdded) {
-
-      checkButtons.forEach(btn => {
-
-        btn.addEventListener("click", () => {
-
-          if (!isAdmin) {
-            alert("❌ فقط الأدمن يقدر يضغط");
-            return;
-          }
-
-          btn.innerText = "✔ تم";
-          btn.disabled = true;
-
-        });
-
-      });
-
-      listenersAdded = true;
-    }
+    checkBoxes.forEach(box => {
+      box.disabled = !isAdmin;
+    });
 
   });
 
 });
 </script>
-<script type="module">
-  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
-  import { getAuth } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
-  import { getFirestore } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
 
-  const firebaseConfig = {
-    apiKey: "AIzaSyBpLuD26_WiVwhLKztyHH_W3FcTeHckEHM",
-    authDomain: "web-koz.firebaseapp.com",
-    databaseURL: "https://web-koz-default-rtdb.firebaseio.com",
-    projectId: "web-koz",
-    storageBucket: "web-koz.firebasestorage.app",
-    messagingSenderId: "137112114880",
-    appId: "1:137112114880:web:5cc6cf1e021a0c193d3f25",
-    measurementId: "G-1TBHS0BS28"
-  };
-
-  const app = initializeApp(firebaseConfig);
-
-  const auth = getAuth(app);
-  const db = getFirestore(app);
-
- // 🔥 مهم جدًا عشان كل صفحاتك تستخدمه
-  window.auth = auth;
-  window.db = db;
-</script>
 </body>
 </html>

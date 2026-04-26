@@ -18,6 +18,9 @@ months.forEach(month => {
   th.textContent = month;
   monthsRow.appendChild(th);
 });
+window.isAdmin = false;
+
+
 
 /* إنشاء الجدول */
 people.forEach((person, i) => {
@@ -30,13 +33,27 @@ people.forEach((person, i) => {
   months.forEach((m, j) => {
     const td = document.createElement("td");
     const cb = document.createElement("input");
+
     cb.type = "checkbox";
 
     const key = `qata_${i}_${j}`;
     cb.checked = localStorage.getItem(key) === "true";
 
+    // 🔥 منع التعديل لغير الأدمن قبل ما يصير التغيير
+    cb.addEventListener("click", (e) => {
+
+      if (!window.isAdmin) {
+        e.preventDefault();
+        alert("❌ فقط الأدمن يقدر يغير");
+      }
+
+    });
+
+    // 🔥 حفظ التغيير فقط إذا صار فعلي
     cb.addEventListener("change", () => {
-      localStorage.setItem(key, cb.checked);
+      if (window.isAdmin) {
+        localStorage.setItem(key, cb.checked);
+      }
     });
 
     td.appendChild(cb);
@@ -45,7 +62,6 @@ people.forEach((person, i) => {
 
   tableBody.appendChild(tr);
 });
-
 /*الخلفيه*/
 const canvas = document.getElementById('shader-canvas');
 const gl = canvas.getContext('webgl');
