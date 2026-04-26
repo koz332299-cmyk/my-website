@@ -43,14 +43,17 @@ body {
 
 <div class="form-container">
   <h2>تسجيل دخول</h2>
-  <input type="text" placeholder="اسم المستخدم"><br>
-  <input type="password" placeholder="كلمة المرور"><br>
-  <button>دخول</button>
+  <input id="email" type="text" placeholder="اسم المستخدم"><br>
+<input id="password" type="password" placeholder="كلمة المرور"><br>
+<button id="loginBtn" type="button">دخول</button>
+</a>
+
 </div>
 
 <!-- الخلفية -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.fog.min.js"></script>
+
 
 <script>
 VANTA.FOG({
@@ -62,5 +65,72 @@ VANTA.FOG({
 });
 </script>
 
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+
+  const btn = document.getElementById("login-btn");
+
+  if (!btn) {
+    console.log("الزر مو موجود أو الـ ID غلط");
+    return;
+  }
+
+  btn.addEventListener("click", function () {
+    window.location.href = "index.html";
+  });
+
+});
+</script>
+<!--serfr-->
+
+<script type="module">
+import { signInWithEmailAndPassword } 
+from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
+
+// زر تسجيل الدخول
+document.getElementById("loginBtn").addEventListener("click", async () => {
+
+  const email = document.getElementById("email").value;
+  const password = document.getElementById("password").value;
+
+  try {
+    await signInWithEmailAndPassword(window.auth, email, password);
+
+ // 🔥 إذا نجح الدخول يروح للرئيسية
+    window.location.href = "index.html";
+
+  } catch (error) {
+    alert("خطأ: " + error.message);
+  }
+
+});
+</script>
+
+
+<script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
+  import { getAuth } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
+  import { getFirestore } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
+
+  const firebaseConfig = {
+    apiKey: "AIzaSyBpLuD26_WiVwhLKztyHH_W3FcTeHckEHM",
+    authDomain: "web-koz.firebaseapp.com",
+    databaseURL: "https://web-koz-default-rtdb.firebaseio.com",
+    projectId: "web-koz",
+    storageBucket: "web-koz.firebasestorage.app",
+    messagingSenderId: "137112114880",
+    appId: "1:137112114880:web:5cc6cf1e021a0c193d3f25",
+    measurementId: "G-1TBHS0BS28"
+  };
+
+  const app = initializeApp(firebaseConfig);
+
+  const auth = getAuth(app);
+  const db = getFirestore(app);
+
+ // 🔥 مهم جدًا عشان كل صفحاتك تستخدمه
+  window.auth = auth;
+  window.db = db;
+</script>
 </body>
 </html>

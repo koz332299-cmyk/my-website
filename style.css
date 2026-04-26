@@ -617,7 +617,8 @@ input[type="checkbox"] {
     left: 20px;
   }
 }
-#bg {
+/* ===== الخلفيه===== */
+#shader-canvas {
   position: fixed;
   top: 0;
   left: 0;

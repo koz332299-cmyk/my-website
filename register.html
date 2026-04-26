@@ -67,10 +67,10 @@ body {
 <!-- الفورم -->
 <div class="form-container">
   <h2>تسجيل جديد</h2>
-  <input type="text" placeholder="الاسم">
-  <input type="email" placeholder="الإيميل">
-  <input type="password" placeholder="كلمة المرور">
-  <button>تسجيل</button>
+  <input id="name" type="text" placeholder="الاسم">
+<input id="email" type="text" placeholder="الإيميل">
+<input id="password" type="password" placeholder="كلمة المرور">
+<button id="signupBtn">تسجيل</button>
 </div>
 
 <!-- مكتبات الخلفية -->
@@ -89,6 +89,55 @@ VANTA.FOG({
   speed: 0.8
 });
 </script>
+<!--serfr-->
 
+<script type="module">
+import { createUserWithEmailAndPassword } 
+from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
+
+document.getElementById("signupBtn").addEventListener("click", async () => {
+
+  const email = document.getElementById("email").value;
+  const password = document.getElementById("password").value;
+
+  try {
+    await createUserWithEmailAndPassword(window.auth, email, password);
+
+   // 🔥 بعد التسجيل يوديه للرئيسية
+    window.location.href = "index.html";
+
+  } catch (error) {
+    alert("خطأ: " + error.message);
+  }
+
+});
+</script>
+
+
+<script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
+  import { getAuth } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
+  import { getFirestore } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
+
+  const firebaseConfig = {
+    apiKey: "AIzaSyBpLuD26_WiVwhLKztyHH_W3FcTeHckEHM",
+    authDomain: "web-koz.firebaseapp.com",
+    databaseURL: "https://web-koz-default-rtdb.firebaseio.com",
+    projectId: "web-koz",
+    storageBucket: "web-koz.firebasestorage.app",
+    messagingSenderId: "137112114880",
+    appId: "1:137112114880:web:5cc6cf1e021a0c193d3f25",
+    measurementId: "G-1TBHS0BS28"
+  };
+
+  const app = initializeApp(firebaseConfig);
+
+  const auth = getAuth(app);
+  const db = getFirestore(app);
+
+ // 🔥 مهم جدًا عشان كل صفحاتك تستخدمه
+  window.auth = auth;
+  window.db = db;
+</script>
 </body>
 </html>
