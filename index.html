@@ -22,10 +22,7 @@
 </header>
 
 
-  <div class="auth-buttons">
-  <a href="login.html" class="btn">تسجيل دخول</a>
-  <a href="register.html" class="btn">تسجيل</a>
-</div>
+  
 
  
 
@@ -135,58 +132,62 @@ void main() {
 }
 </script>
 
-<!--خانه اخفاء العناصر بعد تسجيل الدخول-->
-<div id="authSection">
-  <!-- هنا حط نموذج تسجيل الدخول والتسجيل كامل -->
-  <a href="login.html"><button>تسجيل الدخول</button></a>
-  <a href="signup.html"><button>تسجيل</button></a>
-</div>
 
-<div id="mainSection" style="display:none;">
-  <h2>أهلاً بك في الموقع</h2>
-</div>
 
-<script type="module">
-import { onAuthStateChanged } 
-from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
 
-onAuthStateChanged(window.auth, (user) => {
 
-  const authSection = document.getElementById("authSection");
-  const mainSection = document.getElementById("mainSection");
-
-  if (user) {
-    // ✔ مخفي تسجيل الدخول
-    authSection.style.display = "none";
-    // ✔ يظهر المحتوى
-    mainSection.style.display = "block";
-  } else {
-    // ✔ يظهر تسجيل الدخول
-    authSection.style.display = "block";
-    mainSection.style.display = "none";
-  }
-
-});
-</script>
 
 <!--السيرفر-->
+
 <script type="module">
 import { onAuthStateChanged } 
 from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
 
-onAuthStateChanged(window.auth, (user) => {
+window.addEventListener("DOMContentLoaded", () => {
 
-  if (user) {
-    console.log("User logged in:", user.email);
-  } else {
-   // ❌ مو مسجل دخول → يرجعه لصفحة الدخول
-    window.location.href = "login.html";
-  }
+  const authButtons = document.querySelector(".auth-buttons");
+
+  // 🔥 أزرار الصح في الجدول (إذا موجودة)
+  const checkButtons = document.querySelectorAll(".checkBtn");
+
+  onAuthStateChanged(window.auth, (user) => {
+
+    const isAdmin = user && user.email === "admin@gmail.com";
+
+    if (user) {
+      console.log("LOGGED IN:", user.email);
+
+      if (authButtons) {
+        authButtons.style.display = "none";
+      }
+
+      // 👑 التحكم بالأزرار (فقط للأدمن)
+      checkButtons.forEach(btn => {
+        btn.addEventListener("click", () => {
+
+          if (!isAdmin) {
+            alert("❌ فقط الأدمن يقدر يضغط");
+            return;
+          }
+
+          btn.innerText = "✔ تم";
+          btn.disabled = true;
+
+        });
+      });
+
+    } else {
+
+      if (authButtons) {
+        authButtons.style.display = "block";
+      }
+
+    }
+
+  });
 
 });
 </script>
-
-
 <script type="module">
   import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
   import { getAuth } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
