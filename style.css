@@ -15,33 +15,9 @@ html, body {
   z-index: 2;
 }
 
-/* ⭐ طبقة النجوم */
-body::before {
-  content: "";
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 200%;
-  height: 200%;
-  background-image:
-    radial-gradient(1px 1px at 10px 20px, rgba(255,255,255,0.8), transparent),
-    radial-gradient(1px 1px at 60px 90px, rgba(255,255,255,0.6), transparent),
-    radial-gradient(1px 1px at 120px 50px, rgba(255,255,255,0.5), transparent),
-    radial-gradient(1px 1px at 200px 150px, rgba(255,255,255,0.7), transparent),
-    radial-gradient(1px 1px at 300px 220px, rgba(255,255,255,0.4), transparent),
-    radial-gradient(1px 1px at 400px 300px, rgba(255,255,255,0.6), transparent);
-  
-  background-size: 500px 500px;
-  animation: moveStars 120s linear infinite;
-  opacity: 0.7;
-  z-index: 0;
+
 }
 
-/* حركة النجوم */
-@keyframes moveStars {
-  0% { transform: translateY(0); }
-  100% { transform: translateY(-300px); }
-}
 
 /* العنوان */
 
