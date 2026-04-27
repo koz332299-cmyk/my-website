@@ -48,7 +48,7 @@ async function buildTable() {
 
       // منع التعديل لغير الأدمن
       cb.addEventListener("click", (e) => {
-        if (!isAdmin) {
+        if (!window.isAdmin) {
           e.preventDefault();
           alert("❌ فقط الأدمن");
         }
@@ -56,7 +56,7 @@ async function buildTable() {
 
       // حفظ البيانات
       cb.addEventListener("change", async () => {
-        if (isAdmin) {
+        if (!window.isAdmin) {
           await setDoc(doc(db, "qata", key), {
             checked: cb.checked
           });
