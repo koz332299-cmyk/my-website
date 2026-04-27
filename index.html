@@ -157,6 +157,7 @@ window.isAdmin = false;
 
 
 onAuthStateChanged(auth, (user) => {
+  console.log("USER:", user?.email);
   if (user && user.email === "admin@gmail.com") {
     isAdmin = true;
     console.log("✅ أنت أدمن");

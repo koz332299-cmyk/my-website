@@ -101,7 +101,7 @@ void main() {
 }
 `;
 
-const fragSrc = document.getElementById('fragShader').textContent;
+const fragElement = document.getElementById('fragShader');
 
 const vertShader = compileShader(gl, vertSrc, gl.VERTEX_SHADER);
 const fragShader = compileShader(gl, fragSrc, gl.FRAGMENT_SHADER);
