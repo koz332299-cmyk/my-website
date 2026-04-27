@@ -103,8 +103,10 @@ void main() {
 
 const fragElement = document.getElementById('fragShader');
 
+const fragSrc = fragElement ? fragElement.textContent : null;
+
 const vertShader = compileShader(gl, vertSrc, gl.VERTEX_SHADER);
-const fragShader = compileShader(gl, fragSrc, gl.FRAGMENT_SHADER);
+//const fragShader = compileShader(gl, fragSrc, gl.FRAGMENT_SHADER);
 
 const program = gl.createProgram();
 gl.attachShader(program, vertShader);
